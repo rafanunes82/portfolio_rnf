@@ -53,3 +53,4 @@ const Card: React.FC<CardProps> = ({ texto }: CardProps) => {
 };
 
 export default Card;
+
