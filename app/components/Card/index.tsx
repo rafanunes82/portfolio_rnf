@@ -9,11 +9,14 @@ interface CardProps {
 }
 const Card: React.FC<CardProps> = ({ texto }: CardProps) => {
   const [name, setName] = useState("Clique aqui");
+  
 
   async function asyncHandleAPI() {
     const response: any = await axios("https://swapi.dev/api/");
     const people = await axios(response.data.people)
     setName(people.data.results[0].name)
+    const veiculos = await axios (response.data.vehicles)
+    setName(people.data.results[0].name+" tem um " + veiculos.data.results[1].name)
   } // asincrona, ela espera a resposta, observe que ela tem async e o await
 
   function FirstHandleAPI() {
