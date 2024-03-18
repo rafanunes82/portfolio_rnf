@@ -8,8 +8,10 @@ interface CardProps {
   texto: string;
 }
 const Card: React.FC<CardProps> = ({ texto }: CardProps) => {
-  const [name, setName] = useState("Clique aqui");
+  const [name, setName] = useState<string>("Clique aqui");
   
+console.log(window.document.getElementsByClassName("Título"));
+
 
   async function asyncHandleAPI() {
     const response: any = await axios("https://swapi.dev/api/");
@@ -44,12 +46,12 @@ const Card: React.FC<CardProps> = ({ texto }: CardProps) => {
 }
 
   */
-  function handleAPI() {
-    const response = fetch("https://swapi.dev/api/");
+  async function handleAPI() {
+    const response = await fetch("https://swapi.dev/api/");
     console.log(response);
-  } // ela retorna uma Promisse
+  } // ela retorna uma Promisse se não tiver o async function nem o await
 
-  return <h1 onClick={asyncHandleAPI}>{name}</h1>;
+  return <h1 className="Título" onClick={()=> console.log(texto)}>{name}</h1>;
 };
 
 export default Card;
