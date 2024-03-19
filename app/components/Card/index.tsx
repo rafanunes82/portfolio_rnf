@@ -2,23 +2,22 @@
 import axios from "axios";
 import { METHODS } from "http";
 import React, { useState } from "react";
-
-// import { Container } from './styles';
 interface CardProps {
   texto: string;
 }
 const Card: React.FC<CardProps> = ({ texto }: CardProps) => {
   const [name, setName] = useState<string>("Clique aqui");
-  
-console.log(window.document.getElementsByClassName("Título"));
 
+  console.log(window.document.getElementsByClassName("Título"));
 
   async function asyncHandleAPI() {
     const response: any = await axios("https://swapi.dev/api/");
-    const people = await axios(response.data.people)
-    setName(people.data.results[0].name)
-    const veiculos = await axios (response.data.vehicles)
-    setName(people.data.results[0].name+" tem um " + veiculos.data.results[1].name)
+    const people = await axios(response.data.people);
+    setName(people.data.results[0].name);
+    const veiculos = await axios(response.data.vehicles);
+    setName(
+      people.data.results[0].name + " tem um " + veiculos.data.results[1].name
+    );
   } // asincrona, ela espera a resposta, observe que ela tem async e o await
 
   function FirstHandleAPI() {
@@ -30,12 +29,8 @@ console.log(window.document.getElementsByClassName("Título"));
           .then((people) => setName(people.results[1].name))
       );
   }
-
   /*
-  
   people  === https://swapi.dev/api/people/
-
-
 {
     "people": "https://swapi.dev/api/people/",
     "planets": "https://swapi.dev/api/planets/",
@@ -51,8 +46,11 @@ console.log(window.document.getElementsByClassName("Título"));
     console.log(response);
   } // ela retorna uma Promisse se não tiver o async function nem o await
 
-  return <h1 className="Título" onClick={()=> console.log(texto)}>{name}</h1>;
+  return (
+    <h1 className="Título" onClick={() => console.log(texto)}>
+      {name}
+    </h1>
+  );
 };
 
 export default Card;
-

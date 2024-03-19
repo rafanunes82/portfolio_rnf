@@ -1,33 +1,28 @@
 "use client";
-import Image from 'next/image'
-import Card from './components/Card/index'
-import styles from './page.module.css'
+import Image from "next/image";
+import Card from "./components/Card/index";
+import styles from "./page.module.css";
+import { useEffect, useState } from "react";
+import InputComponent from "./components/InputComponent";
 
 export default function Home() {
-  const times = [{ nome: "Flamengo", estado: "RJ" }, { nome: "São Paulo", estado: "SP" }, { nome: "São Paulo", estado: "SP" }]
-  console.log(times[0].nome)
-
-  function makeRequest() {
-    fetch("https://pokeapi.co/api/v2/pokemon/ditto")
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-
-  }
-
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userSenha, setUserSenha] = useState("");
   return (
     <main className={styles.main}>
-      {/*times.map((time) => <Card texto={time.estado}></Card>)*/}
-      <Title texto='teste'></Title>
-      <button onClick={makeRequest}>Fazer Rec</button>
-
+      <InputComponent />
+      <div>
+        <label>Texto</label>
+        <input placeholder="digite seu nome..."></input>
+      </div>
+      <div>
+        <label>Texto</label>
+        <input placeholder="digite seu nome..."></input>
+      </div>
+      <button onClick={() => console.log(userName, userEmail, userSenha)}>
+        mostrar
+      </button>
     </main>
-  )
+  );
 }
-
-interface CardProps {
-  texto: string;
-}
-const Title: React.FC<CardProps> = ({texto}:CardProps) => {
-  return <h1> {texto} </h1>;
-}
-
